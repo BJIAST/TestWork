@@ -10,28 +10,33 @@ $( document ).ready(function(){
 });
 
 function submitForm(){
-  $("#submitBtn").prop( "disabled", true);
-  $("#submitBtn").val("Please wait..");
+  var f = document.getElementsByTagName('form')[0];
+  if(f.checkValidity()) {
+    $("#submitBtn").prop( "disabled", true);
+    $("#submitBtn").val("Please wait..");
 
-  var formdata = new FormData();
-  formdata.append('fbName', $("#fbName").val());
-  formdata.append('fbEmail', $("#fbEmail").val());
-  formdata.append('fbMessage', $("#fbMessage").val());
+    var formdata = new FormData();
+    formdata.append('fbName', $("#fbName").val());
+    formdata.append('fbEmail', $("#fbEmail").val());
+    formdata.append('fbMessage', $("#fbMessage").val());
 
-  var ajax = new XMLHttpRequest();
-  ajax.open( "POST", "../source/sendform.php" );
-  ajax.onreadystatechange = function() {
-    if(ajax.readyState == 4 && ajax.status == 200) {
-      if(ajax.responseText == "success"){
-        $("#submitBtn").val("The mail has been sent!");
-        $("#fbMessage").val("");
-      }else {
-       $("#status").html() = ajax.responseText;
-       $("#submitBtn").prop( "disabled", false);
+    var ajax = new XMLHttpRequest();
+    ajax.open( "POST", "../source/sendform.php" );
+    ajax.onreadystatechange = function() {
+      if(ajax.readyState == 4 && ajax.status == 200) {
+        if(ajax.responseText == "success"){
+          $("#submitBtn").val("The mail has been sent!");
+          $("#fbMessage").val("");
+        }else {
+         $("#submitBtn").val(ajax.responseText);
+         $("#submitBtn").prop( "disabled", false);
+       }
      }
    }
- }
- ajax.send(formdata);
+   ajax.send(formdata);
+ } else {
+  alert(document.getElementById('example').validationMessage);
+}
 }
 
 function squarePos(left,top){
