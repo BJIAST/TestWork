@@ -1,0 +1,38 @@
+/*Genereal*/
+html {
+    position: relative;
+}
+body {
+    background: linear-gradient(to left, rgba(212,228,239,1) 0%, rgba(134,174,204,1) 100%);
+    text-align: center;
+}
+textarea {
+    resize: none;
+}
+.container {
+    border-bottom: 1px solid #686767;
+    padding: 50px 0;
+}
+
+/*Header*/
+header button {
+    margin-top: 10px;
+}
+
+/*wrapper*/
+.wrapper .container{
+    padding: 90px 0;
+}
+p {
+    text-align: left;
+}
+
+/*black square*/
+#blackSquare {
+    width:100px;
+    height: 100px;
+    background: #000;
+    position: absolute;
+    bottom: 0px;
+}
+
