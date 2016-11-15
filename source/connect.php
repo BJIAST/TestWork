@@ -15,7 +15,10 @@ function select_list(){
     $sql = "SELECT * from squarepos WHERE ipadress = '$userIp'";
     if ($result = $mysqli->query($sql)){
         if ($result->num_rows > 0){
-           echo "Стою!";
+           if( isset($_POST['left']) && isset($_POST['top']) ){
+            echo $left = $_POST['left'];
+            echo $top = $_POST['top'];
+           }
        }else{
             $top=0;
             $left=0;

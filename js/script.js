@@ -41,9 +41,19 @@ function squarePos(left,top){
     console.log("Position left:" + left + " an top: " + top );
 
     var formdata = new FormData();
-  formdata.append('left', left);
-  formdata.append('top', top);
+    formdata.append('left', left);
+    formdata.append('top', top);
 
+    var ajax = new XMLHttpRequest();
+    ajax.open( "POST", "../source/connect.php" );
+    ajax.onreadystatechange = function() {
+      if(ajax.readyState == 4 && ajax.status == 200) {
+        if(ajax.responseText == "success"){
+          console.log(responseText);
+        }
+      }
+    }
+    ajax.send(formdata);
   });
 
 }

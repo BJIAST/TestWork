@@ -1,3 +1,6 @@
+<?php 
+require_once 'source/connect.php'
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
