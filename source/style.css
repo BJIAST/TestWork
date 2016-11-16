@@ -35,4 +35,6 @@ p {
     position: absolute;
     bottom: 0px;
 }
-
+#top, #left {
+    display: none;
+}

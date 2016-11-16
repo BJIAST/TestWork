@@ -1,34 +1,10 @@
-﻿<?php 
-
+<?php 
 function connect_db(){
-    $mysqli = new mysqli("localhost", "root", "", "testdb");
-    
-    if( $mysqli->connect_error){
-        die('Connect Error: ' . $mysqli->connect_error);
-    }
-    return  $mysqli;
-}
-function select_list(){
-    $mysqli = connect_db();
-    $userIp = $_SERVER["REMOTE_ADDR"];
+   $mysqli = new mysqli("localhost", "root", "", "testdb");
 
-    $sql = "SELECT * from squarepos WHERE ipadress = '$userIp'";
-    if ($result = $mysqli->query($sql)){
-        if ($result->num_rows > 0){
-           if( isset($_POST['left']) && isset($_POST['top']) ){
-            echo $left = $_POST['left'];
-            echo $top = $_POST['top'];
-           }
-       }else{
-            $top=0;
-            $left=0;
-           $sqlIns = "INSERT INTO squarepos VALUES(NULL,'$userIp','$top','$left')";
-           $mysqli->query($sqlIns);
-       }
-   }else{
-    echo 'Неудачно! ' . $mysqli->error;
+   if( $mysqli->connect_error){
+    die('Connect Error: ' . $mysqli->connect_error);
 }
+return  $mysqli;
 }
-print_r(select_list());
-echo "<br>";
 ?>

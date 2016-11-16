@@ -1,5 +1,6 @@
 $( document ).ready(function(){
 
+
   squarePos();
 
   $( "#submitBtn" ).click(function() {
@@ -8,6 +9,7 @@ $( document ).ready(function(){
   });
   $("#blackSquare").draggable({ containment: "body", scroll: false });
 });
+
 
 function submitForm(){
   var f = document.getElementsByTagName('form')[0];
@@ -35,14 +37,28 @@ function submitForm(){
    }
    ajax.send(formdata);
  } else {
-  alert(document.getElementById('example').validationMessage);
+// Want only html5 validation window so it will be wrong specialy
+// sorry for error on console
+document.getElementById('custom').validationMessage;
 }
 }
 
 function squarePos(left,top){
+ 
+  if ($("#top").html()){
+    var top =  $("#top").html();
+    var left =  $("#left").html();
+
+    $("#blackSquare").css({
+      "top" : top,
+      "left" : left
+    });
+  }
+
+
   $("#blackSquare").mouseup(function(){
-    left =  $("#blackSquare").offset().left;
-    top =  $("#blackSquare").offset().top;
+    var  left =  $("#blackSquare").offset().left;
+    var  top =  $("#blackSquare").offset().top;
     console.log("Position left:" + left + " an top: " + top );
 
     var formdata = new FormData();
@@ -50,7 +66,7 @@ function squarePos(left,top){
     formdata.append('top', top);
 
     var ajax = new XMLHttpRequest();
-    ajax.open( "POST", "../source/connect.php" );
+    ajax.open( "POST", "../source/myphp.php" );
     ajax.onreadystatechange = function() {
       if(ajax.readyState == 4 && ajax.status == 200) {
         if(ajax.responseText == "success"){
@@ -60,5 +76,5 @@ function squarePos(left,top){
     }
     ajax.send(formdata);
   });
-
 }
+

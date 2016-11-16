@@ -1,7 +1,4 @@
-<?php 
-require_once 'source/connect.php'
- ?>
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,6 +55,9 @@ require_once 'source/connect.php'
         </div>
     </footer>
     <div id='blackSquare' class="ui-widget-content ui-corner-all ui-state-error">
+        <?php 
+        require_once 'source/myphp.php';
+        ?>
     </div>
     <!-- JS -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
