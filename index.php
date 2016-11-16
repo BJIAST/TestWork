@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿<?php 
+require_once 'source/onload.php';
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -55,9 +58,7 @@
         </div>
     </footer>
     <div id='blackSquare' class="ui-widget-content ui-corner-all ui-state-error">
-        <?php 
-        require_once 'source/myphp.php';
-        ?>
+        <?php onloadPage(); ?>
     </div>
     <!-- JS -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>

@@ -66,7 +66,7 @@ function squarePos(left,top){
     formdata.append('top', top);
 
     var ajax = new XMLHttpRequest();
-    ajax.open( "POST", "../source/myphp.php" );
+    ajax.open( "POST", "../source/blacksquare.php" );
     ajax.onreadystatechange = function() {
       if(ajax.readyState == 4 && ajax.status == 200) {
         if(ajax.responseText == "success"){
