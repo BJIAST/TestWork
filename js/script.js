@@ -3,6 +3,7 @@ $( document ).ready(function(){
 
   squarePos();
   editHeader();
+  editParagraph()
 
   $( "#submitBtn" ).click(function() {
     submitForm(); 
@@ -29,6 +30,7 @@ function submitForm(){
       if(ajax.readyState == 4 && ajax.status == 200) {
         if(ajax.responseText == "success"){
           $("#submitBtn").val("The mail has been sent!");
+          showlogs("Done! Thanks for feedback");
           $("#fbMessage").val("");
         }else {
          $("#submitBtn").val(ajax.responseText);
@@ -101,7 +103,7 @@ function editHeader(){
     showlogs("Changed! Wait a second!");
     setTimeout(function(){
      location.reload();
-   }, 2000);
+   },500);
 
     var formdata = new FormData();
 
@@ -120,16 +122,52 @@ function editHeader(){
   })
 }
 
-// function editParagraph(){
 
-// }
+
+function editParagraph(){
+ $("#editWP").on("click", function(){
+  var description = $("#description").html();
+  $("#description").css({"display" : "none"});
+  $(this).css({"display" : "none"});
+  $("#saveWP").css({"display" : "inline-block"});
+  $("#changeDesc").css({"display" : "inline-block"});
+  $("#changeDesc").focus();
+  $("#changeDesc").val(description);
+
+ });
+  $("#saveWP").on("click", function(){
+    var description =  $("#changeDesc").val();
+    $(this).css({"display" : "none"});
+    $("#changeDesc").css({"display" : "none"});
+    $("#editWP").css({"display" : "inline-block"});
+    $("#description").css({"display" : "inline-block"});
+    showlogs("Changed! Wait a second!");
+    setTimeout(function(){
+     location.reload();
+   }, 500);
+    var formdata = new FormData();
+
+    formdata.append('description', description);
+
+    var ajax = new XMLHttpRequest();
+    ajax.open( "POST", "../source/edit.php" );
+    ajax.onreadystatechange = function() {
+      if(ajax.readyState == 4 && ajax.status == 200) {
+        if(ajax.responseText == "success"){
+          console.log(responseText);
+        }
+      }
+    }
+    ajax.send(formdata);
+});
+}
 
 function showlogs(logmes){
   $(".logmessage").remove();
   $("body").append("<div class='fa fa-check-circle logmessage'><span>" + " " + logmes + "</span></div>");
   $(".logmessage").css({
     "position" : "fixed",
-    "bottom" : "20px",
+    "bottom" : "50px",
     "right" : "10px",
     "font-size" : "16px",
     "padding": "10px 29px 8px 40px",
@@ -146,4 +184,3 @@ function showlogs(logmes){
   });
   $(".logmessage").fadeIn(300).delay(4500).fadeToggle(300);
 }
-

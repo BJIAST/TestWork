@@ -20,6 +20,20 @@ function editHeader(){
         $mysqli->query($sqlIns);
     }
 
+}else if (isset($_POST['description'])){
+    $description = $_POST['description'];
+
+    $sqlSelect = "SELECT * FROM posts WHERE paragraph != ''";
+    $result = $mysqli->query($sqlSelect);
+    if ($result->num_rows > 0){
+        $sqlUpd = "UPDATE posts SET paragraph='$description' WHERE paragraph != ''";
+        $mysqli->query($sqlUpd);
+    }else{
+
+        $sqlIns = "INSERT INTO posts (paragraph) VALUES('$description')";
+        $mysqli->query($sqlIns);
+    }
+
 }
 }
 

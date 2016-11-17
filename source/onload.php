@@ -12,7 +12,15 @@ function printH($resultH){
     if(($row = $resultH->fetch_assoc()) != false){
         echo $row['header'];
     }else{
-        echo "<h1> That is default header on clean DB</h1>";
+        echo "That is default header on clean DB";
+
+    }
+}
+function printD($resultD){
+    if(($row = $resultD->fetch_assoc()) != false){
+        echo $row['paragraph'];
+    }else{
+        echo "That is default paragraph on clean DB";
 
     }
 }
@@ -33,6 +41,14 @@ function onLoadHeader(){
   $sqlHeader = "SELECT * FROM posts WHERE header != ''";
   $resultH = $mysqli->query($sqlHeader);
   printH($resultH);
+  $mysqli->close();
+}
+function onLoadDescription(){
+  $mysqli = connect_db();
+
+  $sqlDesc = "SELECT * FROM posts WHERE paragraph != ''";
+  $resultD = $mysqli->query($sqlDesc);
+  printD($resultD);
   $mysqli->close();
 }
 

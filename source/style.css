@@ -40,6 +40,16 @@ header button {
 p {
     text-align: left;
 }
+#changeDesc{
+  width: 100%;
+  font-size: 16px;
+  background: rgba(251, 232, 0, 0.09);
+  border: 0;
+}
+#changeDesc,#saveWP { 
+    display: none;
+}
+
 
 /*black square*/
 #blackSquare {

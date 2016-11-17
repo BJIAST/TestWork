@@ -26,10 +26,12 @@ require_once 'source/onload.php';
     <div class="wrapper">
         <div class="container">
             <div class="col-md-10">
-                <p id="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, quidem, unde. Expedita totam nemo, soluta, exercitationem recusandae dolores illo repudiandae, iure, quibusdam perferendis illum aliquam sed. Esse, necessitatibus nisi a.</p>
+                <p id="description"><?php onLoadDescription(); ?></p>
+                <textarea id="changeDesc" rows="30"></textarea>
             </div>
             <div class="col-md-2 btns">
                 <button class='btn btn-lg btn-primary' id='editWP'>Edit</button>
+                <button class='btn btn-lg btn-primary' id='saveWP'>Save</button>
             </div>
         </div>
     </div>
