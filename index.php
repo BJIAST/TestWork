@@ -14,10 +14,12 @@ require_once 'source/onload.php';
     <header>
         <div class="container">
             <div class="col-md-10">
-                <h1 id='pageName'>Page name here!</h1>
+                <h1 id='pageName'><?php onLoadHeader(); ?></h1>
+                <input type='text' id='changePN'>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 btns">
                 <button class='btn btn-lg btn-primary' id='editPN'>Edit</button>
+                <button class='btn btn-lg btn-primary' id='savePN'>Save</button>
             </div>
         </div>
     </header>
@@ -26,7 +28,7 @@ require_once 'source/onload.php';
             <div class="col-md-10">
                 <p id="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, quidem, unde. Expedita totam nemo, soluta, exercitationem recusandae dolores illo repudiandae, iure, quibusdam perferendis illum aliquam sed. Esse, necessitatibus nisi a.</p>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 btns">
                 <button class='btn btn-lg btn-primary' id='editWP'>Edit</button>
             </div>
         </div>
@@ -58,7 +60,7 @@ require_once 'source/onload.php';
         </div>
     </footer>
     <div id='blackSquare' class="ui-widget-content ui-corner-all ui-state-error">
-        <?php onloadPage(); ?>
+        <?php onLoadSquare(); ?>
     </div>
     <!-- JS -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>

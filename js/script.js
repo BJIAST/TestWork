@@ -2,6 +2,7 @@ $( document ).ready(function(){
 
 
   squarePos();
+  editHeader();
 
   $( "#submitBtn" ).click(function() {
     submitForm(); 
@@ -43,8 +44,9 @@ document.getElementById('custom').validationMessage;
 }
 }
 
+
 function squarePos(left,top){
- 
+
   if ($("#top").html()){
     var top =  $("#top").html();
     var left =  $("#left").html();
@@ -54,7 +56,6 @@ function squarePos(left,top){
       "left" : left
     });
   }
-
 
   $("#blackSquare").mouseup(function(){
     var  left =  $("#blackSquare").offset().left;
@@ -76,5 +77,73 @@ function squarePos(left,top){
     }
     ajax.send(formdata);
   });
+}
+
+
+function editHeader(){
+
+  $("#editPN").on("click", function(){
+    var headerText = $("#pageName").html();
+    $("#pageName").css({"display" : "none"});
+    $(this).css({"display" : "none"});
+    $("#savePN").css({"display" : "inline-block"});
+    $("#changePN").css({"display" : "inline-block"});
+    $("#changePN").focus();
+    $("#changePN").val(headerText);
+  });
+
+  $("#savePN").on("click", function(){
+    var headerText =  $("#changePN").val();
+    $(this).css({"display" : "none"});
+    $("#changePN").css({"display" : "none"});
+    $("#editPN").css({"display" : "inline-block"});
+    $("#pageName").css({"display" : "inline-block"});
+    showlogs("Changed! Wait a second!");
+    setTimeout(function(){
+     location.reload();
+   }, 2000);
+
+    var formdata = new FormData();
+
+    formdata.append('headerText', headerText);
+
+    var ajax = new XMLHttpRequest();
+    ajax.open( "POST", "../source/edit.php" );
+    ajax.onreadystatechange = function() {
+      if(ajax.readyState == 4 && ajax.status == 200) {
+        if(ajax.responseText == "success"){
+          console.log(responseText);
+        }
+      }
+    }
+    ajax.send(formdata);
+  })
+}
+
+// function editParagraph(){
+
+// }
+
+function showlogs(logmes){
+  $(".logmessage").remove();
+  $("body").append("<div class='fa fa-check-circle logmessage'><span>" + " " + logmes + "</span></div>");
+  $(".logmessage").css({
+    "position" : "fixed",
+    "bottom" : "20px",
+    "right" : "10px",
+    "font-size" : "16px",
+    "padding": "10px 29px 8px 40px",
+    "border": "1px solid #026194",
+    "border-radius": "10px",
+    "-moz-border-radius": "10px",
+    "-webkit-border-radius": "10px",
+    "box-shadow": "2px 2px 3px #bbb",
+    "-moz-box-shadow": "2px 2px 3px #bbb",
+    "-webkit-box-shadow": "2px 2px 3px #bbb",
+    "background": "#fff",
+    "text-align":"justify",
+    "color": "#000"
+  });
+  $(".logmessage").fadeIn(300).delay(4500).fadeToggle(300);
 }
 
