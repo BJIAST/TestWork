@@ -103,7 +103,7 @@ function editHeader(){
     showlogs("Changed! Wait a second!");
     setTimeout(function(){
      location.reload();
-   },500);
+   },1500);
 
     var formdata = new FormData();
 
@@ -144,7 +144,7 @@ function editParagraph(){
     showlogs("Changed! Wait a second!");
     setTimeout(function(){
      location.reload();
-   }, 500);
+   }, 1500);
     var formdata = new FormData();
 
     formdata.append('description', description);
